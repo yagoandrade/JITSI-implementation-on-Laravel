@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <script src='https://8x8.vc/external_api.js' async></script>
+    <script src='https://meet.jit.si/external_api.js'></script>
     <style>
         html,
         body,
