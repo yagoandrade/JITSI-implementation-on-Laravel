@@ -9,6 +9,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
     <script src='https://meet.jit.si/external_api.js'></script>
     <style>
@@ -23,10 +24,13 @@
         window.onload = () => {
             const api = new JitsiMeetExternalAPI("8x8.vc", {
                 roomName: "vpaas-magic-cookie-53ebc0c4a3a14596b059ecc72efc122d/SampleAppStrikingCyclesBreatheThankfully",
-                parentNode: document.querySelector('#jaas-container')
+                parentNode: document.querySelector('#jaas-container'),
+                configOverwrite: { defaultLanguage: 'pt' }
             });
-        }
+        };
     </script>
+
+
 
     <!-- Styles -->
     <style>
@@ -422,18 +426,78 @@
     </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased dark:bg-gray-900">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        <div class="box-content p-4 border-4" style="width: 95%; height: 800px!important">
-            <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg" style="height: 100%!important">
-                <div id="jaas-container"></div>
+        <div class="box-content p-4" style="width: 95%; height: 800px!important">
+            <div class="w-full pr-3 flex flex-wrap justify-end ">
+                <p class="text-right text-gray-500 text-md self-center">
+                    Já tem um link?
+                </p>
+                <button class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button" onclick="showLinkModal();">
+                    Entrar
+                </button>
             </div>
-            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                Running on Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg" style="height: 100%!important">
+                <div id="jaas-container" class=""></div>
             </div>
         </div>
     </div>
+
+
+    <div class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="linkModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="px-4 pt-5">
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-left sm:ml-0">
+                        <form class="px-8 pt-6">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-md font-bold mb-2" for="username">
+                                    Já tem um link? Insira-o abaixo e clique em "Entrar"
+                                </label>
+                                <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Link da reunião">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 pb-4 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" onclick="showLinkModal(); updateLink();">
+                        Entrar
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
+<script>
+    function showLinkModal() {
+        var linkModal = document.getElementById("linkModal");
+        linkModal.classList.toggle("hidden");
+    }
+
+    function updateLink() {
+        /* 
+        on first click:
+            jaas-container = hidden
+            exhibit widget to another session
+            
+        if invalid or empty -> show modal to say it is invalid
+        */
+        alert("Uaiii")
+    }
+</script>
 
 </html>
