@@ -731,7 +731,7 @@
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                                                <abbr title="A reunião está disponível" style="text-decoration: none">
+                                                                <abbr title="Você pode iniciar a consulta com esse cliente agora" style="text-decoration: none">
                                                                     Iniciar consulta
                                                                 </abbr>
                                                             </a>
