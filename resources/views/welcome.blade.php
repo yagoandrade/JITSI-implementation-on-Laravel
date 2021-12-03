@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+<?php $roomName = "vpaas-magic-cookie-53ebc0c4a3a14596b059ecc72efc122d/SampleAppStrikingCyclesBreatheThankfully" ?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +12,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src='https://meet.jit.si/external_api.js'></script>
     <style>
         html,
@@ -25,7 +27,9 @@
             const api = new JitsiMeetExternalAPI("8x8.vc", {
                 roomName: "vpaas-magic-cookie-53ebc0c4a3a14596b059ecc72efc122d/SampleAppStrikingCyclesBreatheThankfully",
                 parentNode: document.querySelector('#jaas-container'),
-                configOverwrite: { defaultLanguage: 'pt' }
+                configOverwrite: {
+                    defaultLanguage: 'pt'
+                }
             });
         };
     </script>
@@ -439,6 +443,7 @@
             </div>
             <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg" style="height: 100%!important">
                 <div id="jaas-container" class=""></div>
+                <div id="jaas-connect" class="" style="height: 100%"></div>
             </div>
         </div>
     </div>
@@ -466,14 +471,13 @@
                                 <label class="block text-gray-700 text-md font-bold mb-2" for="username">
                                     Já tem um link? Insira-o abaixo e clique em "Entrar"
                                 </label>
-                                <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Link da reunião">
-
+                                <input class="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="meetingLink" type="text" placeholder="Link da reunião">
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 pb-4 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" onclick="showLinkModal(); updateLink();">
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" onclick="updateLink();">
                         Entrar
                     </button>
                 </div>
@@ -488,6 +492,10 @@
         linkModal.classList.toggle("hidden");
     }
 
+    function isLetter(str) {
+        return str.length === 1 && str.match(/[a-z]/i);
+    }
+
     function updateLink() {
         /* 
         on first click:
@@ -496,7 +504,31 @@
             
         if invalid or empty -> show modal to say it is invalid
         */
-        alert("Uaiii")
+        var input = document.getElementById("meetingLink").value;
+        if (input === "") {
+            alert("O campo de link não pode ser vazio!");
+            return;
+        } else if (isLetter(input.charAt(0)) === false) {
+            alert("O campo de link deve ser preenchido com letras.");
+            return;
+        } else {
+            const container = document.getElementById("jaas-container");
+            const connect = document.getElementById("jaas-connect");
+            container.classList.add("hidden"); // Na primeira execução, esconde a reunião própria
+            connect.classList.remove("hidden");
+            $("#jaas-connect").load(input);
+
+            /*container active = api.roomName;
+            connect active = input;
+
+            <
+            div id = "jaas-container"
+            class = "" > < /div> <
+                div id = "jaas-connect"
+            class = "" > < /div>*/
+
+            showLinkModal();
+        }
     }
 </script>
 
