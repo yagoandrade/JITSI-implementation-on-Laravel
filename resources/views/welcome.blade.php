@@ -26,14 +26,14 @@
 
     <script type="text/javascript">
         /*window.onload = () => {
-                const api = new JitsiMeetExternalAPI("8x8.vc", {
-                    roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
-                    parentNode: document.querySelector('#jaas-container'),
-                    configOverwrite: {
-                        defaultLanguage: 'pt'
-                    }
-                });
-            };*/
+                    const api = new JitsiMeetExternalAPI("8x8.vc", {
+                        roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
+                        parentNode: document.querySelector('#jaas-container'),
+                        configOverwrite: {
+                            defaultLanguage: 'pt'
+                        }
+                    });
+                };*/
     </script>
 
 
@@ -475,7 +475,8 @@
     <div class="flex min-w-full min-h-full justify-center hidden" id="alertCopy" style="position: absolute">
         <div class="mb-5" style="position: fixed; bottom: 0; z-index: 1000; width: 50%">
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Link copiado!</strong>
+                <p><span class="font-bold">Chave copiada!</span> Outras pessoas usarão essa chave para entrar na sua
+                    reunião</p>
                 <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <a style-="cursor: pointer" onclick="alertCopy();">
                         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
@@ -562,6 +563,10 @@
                                     <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="nome_sala" type="text" placeholder="Digite o nome da sala"/>
+=======
+                                        id="createMeetingLink" type="text" placeholder="Gere uma chave de sala"
+                                        disabled />
+>>>>>>> 39d39d6686adec20bac22ce2e8c3b9d7bf87fccc
                                 </div>
                                 <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
@@ -887,13 +892,8 @@
 
 
     function updateLink() {
-        /* 
-        on first click:
-            jaas-container = hidden
-            exhibit widget to another session
-            
-        if invalid or empty -> show modal to say it is invalid
-        */
+        event.preventDefault();
+
         var input = document.getElementById("meetingLink").value;
         if (input === "") {
             Swal.fire({
@@ -902,6 +902,7 @@
                 text: 'O campo de "chave de sala" não pode ser vazio!',
             })
             return;
+<<<<<<< HEAD
         } 
 
 
