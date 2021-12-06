@@ -26,7 +26,7 @@
     <script type="text/javascript">
         /*window.onload = () => {
             const api = new JitsiMeetExternalAPI("8x8.vc", {
-                roomName: "vpaas-magic-cookie-53ebc0c4a3a14596b059ecc72efc122d/SampleAppStrikingCyclesBreatheThankfully",
+                roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
                 parentNode: document.querySelector('#jaas-container'),
                 configOverwrite: {
                     defaultLanguage: 'pt'
