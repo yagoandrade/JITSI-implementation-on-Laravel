@@ -424,8 +424,8 @@
                     <div class="max-w-md w-full space-y-8">
                         <div>
                             <img class="mx-auto h-12 w-auto img-fluid" src="{{asset('images/logo.png')}}" alt="Workflow">
-                            <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
-                                Entre na sua conta
+                            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-600 dark:text-white">
+                                Faça login para entrar na plataforma
                             </h2>
                             <p class="mt-2 text-center text-sm text-gray-500">
                                 Ou
@@ -451,7 +451,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-8 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                    <label for="remember-me" class="ml-2 block text-sm text-white">
+                                    <label for="remember-me" class="ml-2 block text-sm text-gray-600 dark:text-white">
                                         Lembre-se de mim
                                     </label>
                                 </div>

@@ -424,7 +424,7 @@
                     <div class="max-w-md w-full space-y-8">
                         <div>
                             <img class="mx-auto h-12 w-auto img-fluid" src="{{asset('images/logo.png')}}" alt="Workflow">
-                            <h6 class="mt-6 text-center text-xl font-extrabold text-white">
+                            <h6 class="mt-6 text-center text-xl font-extrabold text-gray-600 dark:text-white">
                                 Preencha as informações abaixo para realizar o seu cadastro.
                             </h6>
                         </div>
@@ -461,7 +461,7 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <input id="termRadio" type="checkbox" class="h-4 w-8 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" name="term" required>
-                                    <label class="form-check-label text-white pl-4 my-6" for="termRadio">
+                                    <label class="form-check-label text-white pl-4 my-6 text-gray-600 dark:text-white" for="termRadio">
                                         Eu li e concordo com os <a href="#" class="text-indigo-400 hover:text-indigo-300">Termos e Condições e Política de Privacidade.</a>
                                     </label>
                                 </div>

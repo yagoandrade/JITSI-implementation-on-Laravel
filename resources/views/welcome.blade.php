@@ -26,14 +26,14 @@
 
     <script type="text/javascript">
         /*window.onload = () => {
-                    const api = new JitsiMeetExternalAPI("8x8.vc", {
-                        roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
-                        parentNode: document.querySelector('#jaas-container'),
-                        configOverwrite: {
-                            defaultLanguage: 'pt'
-                        }
-                    });
-                };*/
+                                const api = new JitsiMeetExternalAPI("8x8.vc", {
+                                    roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
+                                    parentNode: document.querySelector('#jaas-container'),
+                                    configOverwrite: {
+                                        defaultLanguage: 'pt'
+                                    }
+                                });
+                            };*/
     </script>
 
 
@@ -475,7 +475,7 @@
     <div class="flex min-w-full min-h-full justify-center hidden" id="alertCopy" style="position: absolute">
         <div class="mb-5" style="position: fixed; bottom: 0; z-index: 1000; width: 50%">
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                <p><span class="font-bold">Chave copiada!</span> Outras pessoas usarão essa chave para entrar na sua
+                <p><span class="font-bold">Link copiado!</span> Outras pessoas usarão esse link para entrar na sua
                     reunião</p>
                 <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <a style-="cursor: pointer" onclick="alertCopy();">
@@ -492,22 +492,22 @@
     </div>
 
     <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        class="relative flex items-top justify-center min-h-screen bg-gray-200 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="box-content p-4" style="width: 95%; height: 800px!important">
             <div class="w-full pr-3 flex flex-wrap justify-between ">
                 <div class="flex">
                     <button
-                        class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        class="text-blue-600 dark:text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                         type="button" onclick="showCreateRoomModal();">
                         Criar uma sala
                     </button>
                 </div>
-                <div class="flex">
-                    <p class="text-right text-gray-500 text-md self-center">
-                        Já tem uma chave?
+                <div class="flex hidden">
+                    <p class="text-right text-gray-600 dark:text-gray-500 text-md self-center">
+                        Já tem um link?
                     </p>
                     <button
-                        class="text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        class="text-blue-600 dark:text-pink-500 background-transparent font-bold uppercase px-3 py-1 text-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                         type="button" onclick="showLinkModal();">
                         Entrar
                     </button>
@@ -536,7 +536,7 @@
                                 <div class="mb-4">
                                     <div class="flex inline-block justify-between mb-2 select-all">
                                         <label class="block text-gray-700 text-md font-bold self-center" for="username">
-                                            Crie uma sessão e receba a chave para conectar-se
+                                            Crie uma sessão e receba o link para conectar-se
                                         </label>
                                         <div class="close-icon-container">
                                             <span class="close-icon closeCreate">
@@ -561,14 +561,15 @@
                                         </div>
                                     </div>
                                     <input
-                                        class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"id="nome_sala" type="text" placeholder="Digite o nome da sala"/>
+                                        class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        id="nome_sala" type="text" placeholder="Digite o nome da sala" />
 
                                 </div>
                                 <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
                                         class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="button" onclick="gerarLink();">
-                                        Gerar chave
+                                        Gerar link
                                     </button>
                                     <!-- <button
                                         class="flex shadow text-purple-500 focus:bg-gray-200 focus:outline-none focus:shadow-outline text-white font-bold py-2 px-4 mr-2 rounded"
@@ -580,7 +581,7 @@
                                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                             </path>
                                         </svg>
-                                        Copiar chave
+                                        Copiar link
                                     </button> -->
 
                                 </div>
@@ -606,9 +607,9 @@
                         <div class="ml-4 text-center text-sm text-gray-500 sm:text-left sm:ml-0">
                             <form class="px-8 pt-6" id="formLinkEntrar">
                                 <div class="mb-4">
-                                    <div class="flex inline-block justify-between mb-2">
+                                    <div class="flex inline-block justify-end mb-2">
                                         <!-- <label class="block text-gray-700 text-md font-bold self-center" for="username">
-                                            Já tem uma chave de sala? Insira a chave abaixo e clique em "Entrar"
+                                            Já tem um link de sala? Insira o link abaixo e clique em "Entrar"
                                         </label> -->
 
                                         <div class="close-icon-container">
@@ -635,7 +636,7 @@
                                     </div>
                                     <!-- <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="meetingLink" type="text" placeholder="Chave de sala"> -->
+                                        id="meetingLink" type="text" placeholder="Link da sala"> -->
                                 </div>
                                 <!-- <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
@@ -671,7 +672,7 @@
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                            Data e horário
+                                                            Data de criação
                                                         </th>
                                                         <th scope="col"
                                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -686,58 +687,64 @@
                                                 <tbody class="bg-white divide-y divide-gray-200"
                                                     style="overflow-y: scroll">
                                                     @foreach ($salas as $sala)
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="flex items-center">
-                                                                <div class="flex-shrink-0 h-10 w-10">
-                                                                    <!-- <img class="h-10 w-10 rounded-full"
+                                                        <tr>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="flex items-center">
+                                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                                        <!-- <img class="h-10 w-10 rounded-full"
                                                                         src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
                                                                         alt=""> -->
-                                                                </div>
-                                                                <div class="ml-4">
-                                                                    <div class="text-sm font-medium text-gray-900">
-                                                                        {{ $sala->proprietario }}
                                                                     </div>
-                                                                   <!--  <div class="text-sm text-gray-500">
+                                                                    <div class="ml-4">
+                                                                        <div class="text-sm font-medium text-gray-900">
+                                                                            {{ $sala->proprietario }}
+                                                                        </div>
+                                                                        <!--  <div class="text-sm text-gray-500">
                                                                         larissa@gmail.com
                                                                     </div> -->
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">{{ $sala->nome }}</div>
-                                                            <!-- <div class="text-sm text-gray-500">Psicólogo</div> -->
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">{{ date("d/m/Y",strtotime($sala->created_at)) }}</div>
-                                                            <!-- <div class="text-sm text-gray-500 align-center">às 10h30
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">{{ $sala->nome }}
+                                                                </div>
+                                                                <!-- <div class="text-sm text-gray-500">Psicólogo</div> -->
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                <div class="text-sm text-gray-900">
+                                                                    {{ date('d/m/Y', strtotime($sala->created_at)) }}
+                                                                </div>
+                                                                <!-- <div class="text-sm text-gray-500 align-center">às 10h30
                                                             </div> -->
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            @if($sala->status == "A")
-                                                            <span
-                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                Disponível
-                                                            </span>
-                                                            @endif
-                                                            @if($sala->status == "F")
-                                                            <span
-                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                                Não disponível
-                                                            </span>
-                                                            @endif
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="{{ url('sessao/'.$sala->token) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">
-                                                                <abbr title="A reunião está disponível"
-                                                                    style="text-decoration: none">
-                                                                    Entrar
-                                                                </abbr>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                                @if ($sala->status == 'A')
+                                                                    <span
+                                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                        Disponível
+                                                                    </span>
+                                                                @endif
+                                                                @if ($sala->status == 'F')
+                                                                    <span
+                                                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                                        Não disponível
+                                                                    </span>
+                                                                @endif
+                                                            </td>
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                                <a href="{{ url('sessao/' . $sala->token) }}"
+                                                                    target="_blank"
+                                                                    class="text-indigo-600 hover:text-indigo-900">
+                                                                    <abbr title="A reunião está disponível"
+                                                                        style="text-decoration: none">
+                                                                        Entrar
+                                                                    </abbr>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
-             
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -801,8 +808,8 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Erro!',
-                text: 'Você não gerou uma chave de sala para ser copiada.',
-                footer: '<a class="outline-none text-indigo-600 hover:text-indigo-900" style="cursor: pointer" onClick="gerarLink()">Clique aqui para gerar uma chave de sala aleatória</a>'
+                text: 'Você não gerou um link de reunião para ser copiado.',
+                footer: '<a class="outline-none text-indigo-600 hover:text-indigo-900" style="cursor: pointer" onClick="gerarLink()">Clique aqui para gerar um link de reunião aleatório</a>'
             })
         }
 
@@ -810,7 +817,7 @@
     }
 
     function gerarLink() {
-        if($('#nome_sala').val() == ""){
+        if ($('#nome_sala').val() == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Erro!',
@@ -818,34 +825,34 @@
             });
             return;
         }
-       //var meetingLink = document.getElementById("createMeetingLink");
+        //var meetingLink = document.getElementById("createMeetingLink");
         let nome_sala = $('#nome_sala').val();
         $.ajax({
             url: "./sala/create",
             cache: false,
             data: {
-                nome_sala : nome_sala
+                nome_sala: nome_sala
             },
             success: function(result) {
                 //meetingLink.value = result.split('/')[1];
                 Swal.fire({
                     icon: 'success',
                     title: 'Sala criada com sucesso!',
-                    text: 'Link da sala: '+result
+                    text: 'Link da sala: ' + result
                 });
                 window.open(result, '_blank');
             }
         });
     }
 
-    function entrar_sala(id){
+    function entrar_sala(id) {
         $.ajax({
-            url: "./sala/buscar/"+id,
+            url: "./sala/buscar/" + id,
             cache: false,
             success: function(result) {
                 let dados = JSON.parse(result);
 
-                if(dados['status']=="success"){
+                if (dados['status'] == "success") {
                     new JitsiMeetExternalAPI("8x8.vc", {
                         roomName: dados['sala'],
                         parentNode: document.querySelector('#jaas-container'),
@@ -853,15 +860,15 @@
                             defaultLanguage: 'pt'
                         }
                     });
-                }else{
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: "Erro!",
                         text: dados['message']
                     });
                 }
-                
-                
+
+
             }
         });
     }
@@ -889,18 +896,18 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Erro!',
-                text: 'O campo de "chave de sala" não pode ser vazio!',
+                text: 'O campo de "link da reunião" não pode ser vazio!',
             })
             return;
-        } 
+        }
 
         $.ajax({
-            url: "./sala/validar/"+input,
+            url: "./sala/validar/" + input,
             cache: false,
             success: function(result) {
                 let dados = JSON.parse(result);
 
-                if(dados['status']=="success"){
+                if (dados['status'] == "success") {
                     new JitsiMeetExternalAPI("8x8.vc", {
                         roomName: dados['sala'],
                         parentNode: document.querySelector('#jaas-container'),
@@ -908,15 +915,15 @@
                             defaultLanguage: 'pt'
                         }
                     });
-                }else{
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: "Erro!",
                         text: dados['message']
                     });
                 }
-                
-                
+
+
             }
         });
     }

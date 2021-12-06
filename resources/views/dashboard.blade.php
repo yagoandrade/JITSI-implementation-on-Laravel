@@ -11,6 +11,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -23,20 +26,6 @@
         }
 
     </style>
-
-    <script type="text/javascript">
-        /*window.onload = () => {
-                                                                            const api = new JitsiMeetExternalAPI("8x8.vc", {
-                                                                                roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
-                                                                                parentNode: document.querySelector('#jaas-container'),
-                                                                                configOverwrite: {
-                                                                                    defaultLanguage: 'pt'
-                                                                                }
-                                                                            });
-                                                                        };*/
-    </script>
-
-
 
     <!-- Styles -->
     <style>
@@ -473,7 +462,7 @@
 
 <body class="antialiased dark:bg-gray-900">
     <div
-        class="relative flex flex-col items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        class="relative flex flex-col items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center md:p-4 sm:p-0">
         <!--
         <div class="self-start" style="margin-left: 2.5%">
             <a href="/" class="flex justify-center self-middle my-3">
@@ -484,7 +473,7 @@
             </a>
         </div>
         -->
-        <div class="box-content" style="width: 95%; height: 90vh!important">
+        <div class="box-content" style="width: 100%; height: 90vh!important">
             <div class="dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg" style="height: 100%!important">
                 <div class="grid grid-cols-1 bg-gray-300 min-h-full">
                     <!--
@@ -521,14 +510,15 @@
                     </div>
                     -->
                     <div class="bg-white m-3 shadow rounded">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col justify-center">
                             <div class="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                                         <div
                                             class="shadow overflow-hidden border-b border-gray-200 flex justify-center">
-                                            <h6 class="uppercase text-md m-1 font-bold text-gray-600 tracking-wider">
-                                                Reuniões marcadas</h6>
+                                            <h6 class="uppercase text-md m-1 mb-3 font-bold text-gray-600 tracking-wider">
+                                                Reuniões marcadas
+                                            </h6>
                                         </div>
                                         <table class="min-w-full divide-y divide-gray-200" style="overflow-y: scroll">
                                             <thead class="bg-gray-50">
@@ -543,7 +533,7 @@
                                                     </th>
                                                     <th scope="col"
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                        Data e horário
+                                                        Data de criação
                                                     </th>
                                                     <th scope="col"
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -602,8 +592,10 @@
                                                             @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="#" onclick="entrar_sala('{{ $sala->id }}')"
+                                                            <a href="{{ url('sessao/' . $sala->token) }}"
+                                                                target="_blank"
                                                                 class="text-indigo-600 hover:text-indigo-900">
+
                                                                 <abbr title="A reunião está disponível"
                                                                     style="text-decoration: none">
                                                                     Entrar
@@ -614,6 +606,19 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
+                                        <div
+                                            class="min-h-full min-w-full flex flex-col justify-center items-center p-5 mb-5">
+                                            @if ($salas !== 0)
+                                                <p class="text-gray-400 text-lg m-2">
+                                                    Sem mais reuniões para mostrar
+                                                </p>
+                                            @else
+                                                <p class="text-gray-400 text-lg m-2">
+                                                    Sem reuniões para mostrar. Comece uma agora!
+                                                </p>
+                                            @endif
+                                            <i class="fas fa-comments text-gray-400 text-5xl"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
