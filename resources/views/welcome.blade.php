@@ -26,14 +26,14 @@
 
     <script type="text/javascript">
         /*window.onload = () => {
-                const api = new JitsiMeetExternalAPI("8x8.vc", {
-                    roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
-                    parentNode: document.querySelector('#jaas-container'),
-                    configOverwrite: {
-                        defaultLanguage: 'pt'
-                    }
-                });
-            };*/
+                    const api = new JitsiMeetExternalAPI("8x8.vc", {
+                        roomName: "vpaas-magic-cookie-d7944c589d2d49e5af719130ee147384/SampleAppTinyNurseriesFreeLovingly",
+                        parentNode: document.querySelector('#jaas-container'),
+                        configOverwrite: {
+                            defaultLanguage: 'pt'
+                        }
+                    });
+                };*/
     </script>
 
 
@@ -475,7 +475,8 @@
     <div class="flex min-w-full min-h-full justify-center hidden" id="alertCopy" style="position: absolute">
         <div class="mb-5" style="position: fixed; bottom: 0; z-index: 1000; width: 50%">
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Link copiado!</strong>
+                <p><span class="font-bold">Chave copiada!</span> Outras pessoas usarão essa chave para entrar na sua
+                    reunião</p>
                 <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                     <a style-="cursor: pointer" onclick="alertCopy();">
                         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
@@ -562,7 +563,7 @@
                                     <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         id="createMeetingLink" type="text" placeholder="Gere uma chave de sala"
-                                        disabled/>
+                                        disabled />
                                 </div>
                                 <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
@@ -923,13 +924,8 @@
 
 
     function updateLink() {
-        /* 
-        on first click:
-            jaas-container = hidden
-            exhibit widget to another session
-            
-        if invalid or empty -> show modal to say it is invalid
-        */
+        event.preventDefault();
+
         var input = document.getElementById("meetingLink").value;
         if (input === "") {
             Swal.fire({
@@ -945,23 +941,12 @@
                 text: 'O campo de "chave de sala" deve ser preenchido com uma chave de sala válida.',
             })
             return;
-        }
-        else {
+        } else {
             const container = document.getElementById("jaas-container");
             const connect = document.getElementById("jaas-connect");
             container.classList.add("hidden"); // Na primeira execução, esconde a reunião própria
             connect.classList.remove("hidden");
             $("#jaas-connect").load(input);
-
-            /*container active = api.roomName;
-            connect active = input;
-
-            <
-            div id = "jaas-container"
-            class = "" > < /div> <
-                div id = "jaas-connect"
-            class = "" > < /div>*/
-
             showLinkModal();
         }
     }
@@ -986,9 +971,7 @@
         linkInput.addEventListener("keyup", function(event) {
             // Number 13 is the "Enter" key on the keyboard
             if (event.keyCode === 13) {
-                // Cancel the default action, if needed
                 event.preventDefault();
-                // Trigger the button element with a click
                 document.getElementById("meetingLinkButton").click();
             }
         });
