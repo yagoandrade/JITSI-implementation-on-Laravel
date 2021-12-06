@@ -561,8 +561,7 @@
                                     </div>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="createMeetingLink" type="text" placeholder="Gere uma chave de sala"
-                                        disabled/>
+                                        id="nome_sala" type="text" placeholder="Digite o nome da sala"/>
                                 </div>
                                 <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
@@ -570,7 +569,7 @@
                                         type="button" onclick="gerarLink();">
                                         Gerar chave
                                     </button>
-                                    <button
+                                    <!-- <button
                                         class="flex shadow text-purple-500 focus:bg-gray-200 focus:outline-none focus:shadow-outline text-white font-bold py-2 px-4 mr-2 rounded"
                                         type="button"
                                         onclick="handleLoading('copy-load'); copiarLink(); openPopover(event,'popover-example-left')">
@@ -581,7 +580,7 @@
                                             </path>
                                         </svg>
                                         Copiar chave
-                                    </button>
+                                    </button> -->
 
                                 </div>
                             </form>
@@ -685,41 +684,50 @@
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200"
                                                     style="overflow-y: scroll">
+                                                    @foreach ($salas as $sala)
                                                     <tr>
                                                         <td class="px-6 py-4 whitespace-nowrap">
                                                             <div class="flex items-center">
                                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                                    <img class="h-10 w-10 rounded-full"
+                                                                    <!-- <img class="h-10 w-10 rounded-full"
                                                                         src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                                                        alt="">
+                                                                        alt=""> -->
                                                                 </div>
                                                                 <div class="ml-4">
                                                                     <div class="text-sm font-medium text-gray-900">
-                                                                        Drª. Larissa Manoela
+                                                                        {{ $sala->proprietario }}
                                                                     </div>
-                                                                    <div class="text-sm text-gray-500">
+                                                                   <!--  <div class="text-sm text-gray-500">
                                                                         larissa@gmail.com
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">Psicanalista</div>
-                                                            <div class="text-sm text-gray-500">Psicólogo</div>
+                                                            <div class="text-sm text-gray-900">{{ $sala->nome }}</div>
+                                                            <!-- <div class="text-sm text-gray-500">Psicólogo</div> -->
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">15/12/2021</div>
-                                                            <div class="text-sm text-gray-500 align-center">às 10h30
-                                                            </div>
+                                                            <div class="text-sm text-gray-900">{{ date("d/m/Y",strtotime($sala->created_at)) }}</div>
+                                                            <!-- <div class="text-sm text-gray-500 align-center">às 10h30
+                                                            </div> -->
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap">
+                                                            @if($sala->status == "A")
                                                             <span
                                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                                 Disponível
                                                             </span>
+                                                            @endif
+                                                            @if($sala->status == "F")
+                                                            <span
+                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                                Não disponível
+                                                            </span>
+                                                            @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                                            <a href="#" onclick="entrar_sala('{{ $sala->id }}')" class="text-indigo-600 hover:text-indigo-900">
                                                                 <abbr title="A reunião está disponível"
                                                                     style="text-decoration: none">
                                                                     Entrar
@@ -727,96 +735,8 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="flex items-center">
-                                                                <div class="flex-shrink-0 h-10 w-10">
-                                                                    <img class="h-10 w-10 rounded-full"
-                                                                        src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                                                        alt="">
-                                                                </div>
-                                                                <div class="ml-4">
-                                                                    <div class="text-sm font-medium text-gray-900">
-                                                                        Drª. Samuela Irving
-                                                                    </div>
-                                                                    <div class="text-sm text-gray-500">
-                                                                        sa.irving@gmail.com
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">Psicóloga Cognitiva</div>
-                                                            <div class="text-sm text-gray-500">Psicólogo</div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">15/12/2021</div>
-                                                            <div class="text-sm text-gray-500 align-center">às 10h30
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <span
-                                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                                Não disponível
-                                                            </span>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="javascript:void(0);"
-                                                                class="text-gray-600 hover:text-gray-900"
-                                                                style="cursor:help">
-                                                                <abbr title="A reunião ainda não está disponível"
-                                                                    style="text-decoration: none">
-                                                                    Entrar
-                                                                </abbr>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="flex items-center">
-                                                                <div class="flex-shrink-0 h-10 w-10">
-                                                                    <img class="h-10 w-10 rounded-full"
-                                                                        src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                                                        alt="">
-                                                                </div>
-                                                                <div class="ml-4">
-                                                                    <div class="text-sm font-medium text-gray-900">
-                                                                        Frank Silva
-                                                                    </div>
-                                                                    <div class="text-sm text-gray-500">
-                                                                        frank@gmail.com
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-500">Cliente</div>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <div class="text-sm text-gray-900">15/12/2021</div>
-                                                            <div class="text-sm text-gray-500 align-center">às 10h30
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="px-6 py-4 whitespace-nowrap">
-                                                            <a style="cursor: pointer" onclick="abrirSessão();">
-                                                                <span
-                                                                    class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-blue-100 text-blue-800">
-                                                                    Sessão disponível
-                                                                </span>
-                                                            </a>
-                                                        </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                                                <abbr
-                                                                    title="Você pode iniciar a consulta com esse cliente agora"
-                                                                    style="text-decoration: none">
-                                                                    Iniciar consulta
-                                                                </abbr>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
+             
                                                 </tbody>
                                             </table>
                                         </div>
@@ -889,12 +809,29 @@
     }
 
     function gerarLink() {
-        var meetingLink = document.getElementById("createMeetingLink");
+        if($('#nome_sala').val() == ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'Nome da sala não pode ser vazio'
+            });
+            return;
+        }
+       //var meetingLink = document.getElementById("createMeetingLink");
+        let nome_sala = $('#nome_sala').val();
         $.ajax({
             url: "./sala/create",
             cache: false,
+            data: {
+                nome_sala : nome_sala
+            },
             success: function(result) {
-                meetingLink.value = "https://meet.jit.si/" + result;
+                //meetingLink.value = result.split('/')[1];
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sala criada com sucesso!',
+                    text: 'Token da sala: '+result.split('/')[1]
+                });
                 new JitsiMeetExternalAPI("8x8.vc", {
                     roomName: result,
                     parentNode: document.querySelector('#jaas-container'),
@@ -904,7 +841,34 @@
                 });
             }
         });
+    }
 
+    function entrar_sala(id){
+        $.ajax({
+            url: "./sala/buscar/"+id,
+            cache: false,
+            success: function(result) {
+                let dados = JSON.parse(result);
+
+                if(dados['status']=="success"){
+                    new JitsiMeetExternalAPI("8x8.vc", {
+                        roomName: dados['sala'],
+                        parentNode: document.querySelector('#jaas-container'),
+                        configOverwrite: {
+                            defaultLanguage: 'pt'
+                        }
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: "Erro!",
+                        text: dados['message']
+                    });
+                }
+                
+                
+            }
+        });
     }
 
     function isAlphaNumeric(str) {
@@ -938,32 +902,36 @@
                 text: 'O campo de "chave de sala" não pode ser vazio!',
             })
             return;
-        } else if (!isAlphaNumeric(input)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Erro!',
-                text: 'O campo de "chave de sala" deve ser preenchido com uma chave de sala válida.',
-            })
-            return;
-        }
-        else {
-            const container = document.getElementById("jaas-container");
-            const connect = document.getElementById("jaas-connect");
-            container.classList.add("hidden"); // Na primeira execução, esconde a reunião própria
-            connect.classList.remove("hidden");
-            $("#jaas-connect").load(input);
+        } 
 
-            /*container active = api.roomName;
-            connect active = input;
 
-            <
-            div id = "jaas-container"
-            class = "" > < /div> <
-                div id = "jaas-connect"
-            class = "" > < /div>*/
+        $.ajax({
+            url: "./sala/validar/"+input,
+            cache: false,
+            success: function(result) {
+                let dados = JSON.parse(result);
 
-            showLinkModal();
-        }
+                if(dados['status']=="success"){
+                    new JitsiMeetExternalAPI("8x8.vc", {
+                        roomName: dados['sala'],
+                        parentNode: document.querySelector('#jaas-container'),
+                        configOverwrite: {
+                            defaultLanguage: 'pt'
+                        }
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: "Erro!",
+                        text: dados['message']
+                    });
+                }
+                
+                
+            }
+        });
+
+
     }
 
     $(document).ready(function() {

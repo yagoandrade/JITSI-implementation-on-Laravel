@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 Route::get('/', [ RoomController::class, 'index']);
 Route::get('/sala/create/', [ RoomController::class, 'criar']);
-Route::get('/sala/{id}', [ RoomController::class, 'buscar']);
+Route::get('/sala/buscar/{id}', [ RoomController::class, 'buscar']);
+Route::get('/sala/validar/{token}', [ RoomController::class, 'validar']);
 
 
 /*
