@@ -10,6 +10,8 @@ use App\Models\room;
 
 class RoomController extends Controller
 {
+
+
     public function buscar($id){
 
     	$sala = room::find($id);
@@ -23,13 +25,24 @@ class RoomController extends Controller
 
     }
 
+    public function getsessao($token){
+    	$sala = room::where("token", "=", $token)->count();
+    	
+    	if($sala > 0){
+    		$token_principal = "vpaas-magic-cookie-2d75c04460b449eda80b9438285a45ac";
+    		return view("room", ["sala"=>$token_principal."/".$token]);
+    	}
+    	else
+    		return view("room", ["sala"=>""]);
+    }
+
     public function validar($token){
 
     	$sala = room::where("token", "=", $token)->count();
 
     	if($sala > 0){
     		$token_principal = "vpaas-magic-cookie-2d75c04460b449eda80b9438285a45ac";
-    		return json_encode(["status"=>"success", "sala"=>$token_principal."/".$token]);
+    		return json_encode(["status"=>"success", "sala"=> url('/')."/".$token_principal."/".$token]);
     	}else{
     		return json_encode(["status"=>"error", "message"=>"Sala não encontrada!"]);
     	}
@@ -46,7 +59,7 @@ class RoomController extends Controller
     	$token = "vpaas-magic-cookie-2d75c04460b449eda80b9438285a45ac";
     	$token2 = time().substr(MD5(time()), 1, 5);
 
-
+    	$url = url('/');
     	$sala = new room();
 
     	$sala->proprietario = "Dev";
@@ -57,7 +70,7 @@ class RoomController extends Controller
     	$sala->save();
 
     	
-    	return $token."/".$token2;
+    	return $url."/sessao/".$token2;
 
     	
 

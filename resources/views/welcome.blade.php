@@ -607,9 +607,9 @@
                             <form class="px-8 pt-6" id="formLinkEntrar">
                                 <div class="mb-4">
                                     <div class="flex inline-block justify-between mb-2">
-                                        <label class="block text-gray-700 text-md font-bold self-center" for="username">
+                                        <!-- <label class="block text-gray-700 text-md font-bold self-center" for="username">
                                             Já tem uma chave de sala? Insira a chave abaixo e clique em "Entrar"
-                                        </label>
+                                        </label> -->
 
                                         <div class="close-icon-container">
                                             <span class="close-icon closeLink">
@@ -633,17 +633,17 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <input
+                                    <!-- <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                        id="meetingLink" type="text" placeholder="Chave de sala">
+                                        id="meetingLink" type="text" placeholder="Chave de sala"> -->
                                 </div>
-                                <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
+                                <!-- <div class="bg-gray-50 pb-4 mt-3 sm:flex sm:flex-row-reverse">
                                     <button
                                         class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="button" id="meetingLinkButton" onclick="updateLink();">
                                         Entrar
                                     </button>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                         <div>
@@ -728,7 +728,7 @@
                                                             @endif
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            <a href="#" onclick="entrar_sala('{{ $sala->id }}')" class="text-indigo-600 hover:text-indigo-900">
+                                                            <a href="{{ url('sessao/'.$sala->token) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">
                                                                 <abbr title="A reunião está disponível"
                                                                     style="text-decoration: none">
                                                                     Entrar
@@ -831,15 +831,9 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Sala criada com sucesso!',
-                    text: 'Token da sala: '+result.split('/')[1]
+                    text: 'Link da sala: '+result
                 });
-                new JitsiMeetExternalAPI("8x8.vc", {
-                    roomName: result,
-                    parentNode: document.querySelector('#jaas-container'),
-                    configOverwrite: {
-                        defaultLanguage: 'pt'
-                    }
-                });
+                window.open(result, '_blank');
             }
         });
     }

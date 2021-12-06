@@ -2,10 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
-Route::get('/', [ RoomController::class, 'index']);
-Route::get('/sala/create/', [ RoomController::class, 'criar']);
-Route::get('/sala/buscar/{id}', [ RoomController::class, 'buscar']);
-Route::get('/sala/validar/{token}', [ RoomController::class, 'validar']);
+
 
 
 /*
@@ -16,6 +13,12 @@ Route::get('/', function () {
 
 # Auth
 Auth::routes(['verify' => true]);
+Route::get('/', [ RoomController::class, 'index']);
+Route::get('/sala/create/', [ RoomController::class, 'criar']);
+Route::get('/sala/buscar/{id}', [ RoomController::class, 'buscar']);
+Route::get('/sala/validar/{token}', [ RoomController::class, 'validar']);
+Route::get('/sessao/{token}', [ RoomController::class, 'getsessao']);
+
 Route::get('/register/complete/{RegisterCode}', 'Auth\RegisterController@completePage')->name('register.complete');
 
 # Socialite Google
@@ -24,6 +27,9 @@ Route::get('auth/google/callback', 'Auth\GoogleLogin@handleGoogleCallback')->nam
 
 # Painel
 Route::group(['middleware' => ['auth', 'needsRole:user', 'verified'], 'prefix' => 'painel'], function () {
+
+
+
 /* 
     # Home
     Route::get('/', 'Painel\HomeController@index')->name('painel.home');
