@@ -24,7 +24,7 @@
     </style>
 
     <script type="text/javascript">
-        window.onload = () => {
+        /*window.onload = () => {
             const api = new JitsiMeetExternalAPI("8x8.vc", {
                 roomName: "vpaas-magic-cookie-53ebc0c4a3a14596b059ecc72efc122d/SampleAppStrikingCyclesBreatheThankfully",
                 parentNode: document.querySelector('#jaas-container'),
@@ -32,7 +32,7 @@
                     defaultLanguage: 'pt'
                 }
             });
-        };
+        };*/
     </script>
 
 
@@ -810,8 +810,21 @@
 
     function gerarLink() {
         var meetingLink = document.getElementById("createMeetingLink");
-        var link = "testeLink";
-        meetingLink.value = link;
+        $.ajax({
+          url: "./sala/create",
+          cache: false,
+          success: function(result){
+                meetingLink.value = "https://meet.jit.si/"+result;
+                new JitsiMeetExternalAPI("8x8.vc", {
+                    roomName: result,
+                    parentNode: document.querySelector('#jaas-container'),
+                    configOverwrite: {
+                        defaultLanguage: 'pt'
+                    }
+                });
+          }
+        });
+        
     }
 
     function updateLink() {
