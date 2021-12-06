@@ -562,6 +562,7 @@
                                     </div>
                                     <input
                                         class="shadow appearance-none border rounded w-full py-3 pl-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+<<<<<<< HEAD
                                         id="nome_sala" type="text" placeholder="Digite o nome da sala"/>
 =======
                                         id="createMeetingLink" type="text" placeholder="Gere uma chave de sala"
@@ -933,6 +934,23 @@
         });
 
 
+=======
+        } else if (!isAlphaNumeric(input)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro!',
+                text: 'O campo de "chave de sala" deve ser preenchido com uma chave de sala válida.',
+            })
+            return;
+        } else {
+            const container = document.getElementById("jaas-container");
+            const connect = document.getElementById("jaas-connect");
+            container.classList.add("hidden"); // Na primeira execução, esconde a reunião própria
+            connect.classList.remove("hidden");
+            $("#jaas-connect").load(input);
+            showLinkModal();
+        }
+>>>>>>> 39d39d6686adec20bac22ce2e8c3b9d7bf87fccc
     }
 
     $(document).ready(function() {
@@ -955,9 +973,7 @@
         linkInput.addEventListener("keyup", function(event) {
             // Number 13 is the "Enter" key on the keyboard
             if (event.keyCode === 13) {
-                // Cancel the default action, if needed
                 event.preventDefault();
-                // Trigger the button element with a click
                 document.getElementById("meetingLinkButton").click();
             }
         });
