@@ -14,6 +14,7 @@ Route::get('/', function () {
 # Auth
 Auth::routes(['verify' => true]);
 Route::get('/', [ RoomController::class, 'index']);
+Route::get('/dashboard', [RoomController::class, 'dashboard']);
 Route::get('/sala/create/', [ RoomController::class, 'criar']);
 Route::get('/sala/buscar/{id}', [ RoomController::class, 'buscar']);
 Route::get('/sala/validar/{token}', [ RoomController::class, 'validar']);
