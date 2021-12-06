@@ -14,7 +14,12 @@ Route::get('/', function () {
 # Auth
 Auth::routes(['verify' => true]);
 Route::get('/', [ RoomController::class, 'index']);
+Route::get('/joel', function(){
+    return view('room');
+});
 Route::get('/sala/create/', [ RoomController::class, 'criar']);
+
+
 Route::get('/sala/buscar/{id}', [ RoomController::class, 'buscar']);
 Route::get('/sala/validar/{token}', [ RoomController::class, 'validar']);
 Route::get('/sessao/{token}', [ RoomController::class, 'getsessao']);

@@ -39,6 +39,7 @@ class RoomController extends Controller
     public function validar($token){
 
     	$sala = room::where("token", "=", $token)->count();
+    	
 
     	if($sala > 0){
     		$token_principal = "vpaas-magic-cookie-2d75c04460b449eda80b9438285a45ac";
@@ -49,11 +50,15 @@ class RoomController extends Controller
 
     }
 
+
+
     public function index(){
     	$sala = room::all();
 
     	return view('welcome', ["salas"=>$sala]);
     }
+
+
 
     public function criar(Request $request){
     	$token = "vpaas-magic-cookie-2d75c04460b449eda80b9438285a45ac";
