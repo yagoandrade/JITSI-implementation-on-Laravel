@@ -49,6 +49,12 @@ class RoomController extends Controller
 
     }
 
+    public function dashboard(){
+    	$sala = room::all();
+
+    	return view('dashboard', ["salas"=>$sala]);
+	}
+
     public function index(){
     	$sala = room::all();
 
