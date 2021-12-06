@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\room;
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/sala/create/', [ room::class, 'criar']);
-Route::get('/sala/{id}', [ room::class, 'buscar']);
+use App\Http\Controllers\RoomController;
+Route::get('/', [ RoomController::class, 'index']);
+Route::get('/sala/create/', [ RoomController::class, 'criar']);
+Route::get('/sala/{id}', [ RoomController::class, 'buscar']);
 
 
 /*
